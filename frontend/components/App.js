@@ -69,7 +69,13 @@ export default function App() {
   const editExistingMember = () => {
     // ✨ This takes the values of the form and replaces the data of the
     // member in the `members` state whose id matches the `editing` state
-
+    setMembers(prevMembers => prevMembers.map(mem => {
+      if (mem.id == editing) {
+        return { ...mem, ...values}
+      }
+      return mem
+    }))
+    setEditing(null)
   }
   const onSubmit = evt => {
     // ✨ This is the submit handler for your form element.
@@ -83,6 +89,7 @@ export default function App() {
     } else {
       submitNewMember()
     } 
+    setValues(initialValues())
   }
   return (
     <div>{/* ✨ Fix the JSX by wiring the necessary values and event handlers */}
