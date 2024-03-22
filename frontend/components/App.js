@@ -40,6 +40,8 @@ export default function App() {
   }, [editing])
 
   const onChange = evt => {
+    const { id, value } = evt.target
+    setValues(prevValues => ({ ...prevValues, [id]: value}))
     // ✨ This is the change handler for your text inputs and your textarea.
     // You can check `evt.target.id` to know which input changed
     // and then you can use `evt.target.value` to update the state of the form
